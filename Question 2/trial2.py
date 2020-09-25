@@ -25,7 +25,7 @@ def sort_contours(cnts, method="left-to-right"):
     
 
 # Read the image
-img = cv2.imread('test2.jpg',0)
+img = cv2.imread('test6.jpg',0)
 
 # Thresholding the image
 #(thresh, img_bin) = cv2.threshold(img, 128, 255,cv2.THRESH_ADAPTIVE) #cv2.THRESH_BINARY|
@@ -34,7 +34,7 @@ img_bin = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRES
 
 # Invert the image
 img_bin = 255-img_bin 
-#cv2.imwrite("Image_bin.jpg",img_bin)
+cv2.imwrite("Image_bin.jpg",img_bin)
 
 # Defining a kernel length
 kernel_length = np.array(img).shape[1]//80
@@ -73,7 +73,7 @@ for c in contours:
     # Returns the location and width,height for every contour
     x, y, w, h = cv2.boundingRect(c)
     
-    if (w > 150 and h > 150): #and w > 3*h:
+    if (w > 40 and h > 40): #and w > 3*h:
         idx += 1
         new_img = img[y:y+h, x:x+w]
         cv2.imwrite(newfolder+str(idx) + '.png', new_img)# If the box height is greater then 20, widht is >80, then only save it as a box in "cropped/" folder.
